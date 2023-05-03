@@ -6,6 +6,9 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 public class SpringTobyApplication {
 
@@ -28,8 +33,8 @@ public class SpringTobyApplication {
                     //2. 헤더 특히 content type 헤더
                     //3. body 부분
                     // 를 구현해야한다
-                    resp.setStatus(200);
-                    resp.setHeader("Content-Type", "text/plain");
+                    resp.setStatus(HttpStatus.OK.value());
+                    resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
                     resp.getWriter().println("hello servlet");
                 }
             }).addMapping("/hello");// '/hello'로 들어온 리소스는 해당 object가 처리하겠다.
