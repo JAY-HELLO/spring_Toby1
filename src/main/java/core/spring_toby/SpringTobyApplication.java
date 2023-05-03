@@ -31,8 +31,6 @@ public class SpringTobyApplication {
                     resp.setStatus(200);
                     resp.setHeader("Content-Type", "text/plain");
                     resp.getWriter().println("hello servlet");
-
-                    super.service(req, resp);
                 }
             }).addMapping("/hello");// '/hello'로 들어온 리소스는 해당 object가 처리하겠다.
 
