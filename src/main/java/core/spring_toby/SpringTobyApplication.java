@@ -28,6 +28,7 @@ public class SpringTobyApplication {
             servletContext.addServlet("hello", new HttpServlet() {
                 @Override
                 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                    String name = req.getParameter("name");
                     //웹 응답의 3개 요소
                     //1. 상태라인에서 상태코드
                     //2. 헤더 특히 content type 헤더
@@ -35,7 +36,7 @@ public class SpringTobyApplication {
                     // 를 구현해야한다
                     resp.setStatus(HttpStatus.OK.value());
                     resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-                    resp.getWriter().println("hello servlet");
+                    resp.getWriter().println("hello " + name);
                 }
             }).addMapping("/hello");// '/hello'로 들어온 리소스는 해당 object가 처리하겠다.
 
