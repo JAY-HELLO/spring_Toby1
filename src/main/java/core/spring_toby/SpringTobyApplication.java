@@ -26,6 +26,7 @@ public class SpringTobyApplication {
         ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
         //익명 클래스 코드 작업
         WebServer webServer = serverFactory.getWebServer(servletContext -> {
+            HelloController helloController = new HelloController();
             servletContext.addServlet("frontController", new HttpServlet() {
                 @Override
                 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,9 +35,12 @@ public class SpringTobyApplication {
                     if(req.getRequestURI().equals("/hello") && req.getMethod().equals(HttpMethod.GET.name())){
                         String name = req.getParameter("name");
 
+                        //hello Controller을 활용하는 front Controller
+                        String ret = helloController.hello(name); // 바인딩 작업.
+
                         resp.setStatus(HttpStatus.OK.value());
                         resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-                        resp.getWriter().println("hello " + name);
+                        resp.getWriter().println(ret);
                     }
                     else if(req.getRequestURI().equals("/user")){
                         //
