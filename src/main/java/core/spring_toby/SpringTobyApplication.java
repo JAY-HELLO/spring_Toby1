@@ -21,11 +21,13 @@ public class SpringTobyApplication {
 
     public static void main(String[] args) {
 
+        //spring 컨테이너 생성
         GenericWebApplicationContext applicationContext = new GenericWebApplicationContext();
         applicationContext.registerBean(HelloController.class);
         applicationContext.registerBean(SimpleHelloService.class);
         applicationContext.refresh();
 
+        //servlet 컨테이너 생성
         ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
         //익명 클래스 코드 작업
         WebServer webServer = serverFactory.getWebServer(servletContext -> {
