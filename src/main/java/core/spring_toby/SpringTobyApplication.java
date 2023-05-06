@@ -27,6 +27,15 @@ import java.io.IOException;
 @ComponentScan//@Component가 붙은 모든 클래스를 빈에 등록
 public class SpringTobyApplication {
 
+    @Bean
+    public ServletWebServerFactory servletWebServerFactory() {
+        return new TomcatServletWebServerFactory();
+    }
+    @Bean
+    public DispatcherServlet dispatcherServlet() {
+        return new DispatcherServlet();
+    }
+
     public static void main(String[] args) {
 
         //spring 컨테이너 생성
@@ -35,8 +44,11 @@ public class SpringTobyApplication {
             protected void onRefresh() {// onRefresh가 불리는 시점에 초기화 작업 수행
                 super.onRefresh();
 
-                //servlet 컨테이너 생성
-                ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+                //인스턴스 생성은 스프링 컨테이너에 등록된 빈을 가져와서 사용
+                ServletWebServerFactory serverFactory = this.getBean(ServletWebServerFactory.class);
+                DispatcherServlet dispatcherServlet = this.getBean(DispatcherServlet.class);
+                dispatcherServlet.setApplicationContext(this);
+
                 //익명 클래스 코드 작업
                 WebServer webServer = serverFactory.getWebServer(servletContext -> {
                     servletContext.addServlet("dispatcherServlet",
