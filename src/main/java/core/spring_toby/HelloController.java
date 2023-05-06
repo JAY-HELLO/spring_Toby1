@@ -1,5 +1,6 @@
 package core.spring_toby;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -7,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
-@RequestMapping("/hello")
+//@MyComponent// spring컨테이너에 들어가는 컴포넌트 선언 //component 어노테이션을 메타 어노테이션으로 가진 어노테이션
+@Component
+@RestController
 public class HelloController {
 
     private final HelloService helloService;
@@ -23,8 +26,9 @@ public class HelloController {
      * @param name
      * @return
      */
-    @GetMapping
-    @ResponseBody
+
+    //@ResponseBody RestController는 responseBody를 메타 어노테이션으로 가짐
+    @GetMapping("/hello")
     public String hello(String name){
         SimpleHelloService helloService = new SimpleHelloService();
         return helloService.sayHello(Objects.requireNonNull(name));

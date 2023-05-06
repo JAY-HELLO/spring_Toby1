@@ -6,6 +6,7 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.http.HttpMethod;
@@ -23,16 +24,9 @@ import javax.swing.*;
 import java.io.IOException;
 
 @Configuration
+@ComponentScan//@Component가 붙은 모든 클래스를 빈에 등록
 public class SpringTobyApplication {
-    @Bean
-    public HelloController helloController(HelloService helloService) {
-        return new HelloController(helloService);
-    }
 
-    @Bean
-    public HelloService helloService(){
-        return new SimpleHelloService();
-    }
     public static void main(String[] args) {
 
         //spring 컨테이너 생성
