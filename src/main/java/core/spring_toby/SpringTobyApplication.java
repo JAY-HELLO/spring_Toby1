@@ -24,18 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import java.io.IOException;
 
-@Configuration
-@ComponentScan//@Component가 붙은 모든 클래스를 빈에 등록
+@MySpringBootAnnotation
 public class SpringTobyApplication {
-
-    @Bean
-    public ServletWebServerFactory servletWebServerFactory() {
-        return new TomcatServletWebServerFactory();
-    }
-    @Bean
-    public DispatcherServlet dispatcherServlet() {
-        return new DispatcherServlet();
-    }
 
     public static void main(String[] args) {
         // 처음 스프링 부트 어플리케이션을 생성할떄의 모양과 동일함을 알 수 있다.
