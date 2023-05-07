@@ -1,5 +1,6 @@
 package core.spring_toby;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
@@ -38,7 +39,8 @@ public class SpringTobyApplication {
 
     public static void main(String[] args) {
         // 처음 스프링 부트 어플리케이션을 생성할떄의 모양과 동일함을 알 수 있다.
-        MySpringApplication.run(SpringTobyApplication.class, args);
+        //MySpringApplication.run(SpringTobyApplication.class, args);
+        SpringApplication.run(SpringTobyApplication.class,args);
     }
 
 }
