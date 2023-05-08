@@ -1,0 +1,2 @@
+core.config.autoconfig.TomcatWebServerConfig
+core.config.autoconfig.DispatcherServletConfig
