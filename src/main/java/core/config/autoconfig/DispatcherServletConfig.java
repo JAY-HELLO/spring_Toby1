@@ -1,8 +1,10 @@
 package core.config.autoconfig;
 
+import core.config.MyAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
 
+@MyAutoConfiguration
 public class DispatcherServletConfig {
     @Bean
     public DispatcherServlet dispatcherServlet() {
