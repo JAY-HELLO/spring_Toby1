@@ -13,6 +13,7 @@ import org.springframework.util.ClassUtils;
 
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
+@Import(ServerProperties.class)
 public class TomcatWebServerConfig {
 
     @Bean("TomcatWebServerFactory")// 빈 이름 직접 지정

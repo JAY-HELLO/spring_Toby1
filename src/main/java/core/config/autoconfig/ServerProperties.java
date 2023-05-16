@@ -1,5 +1,9 @@
 package core.config.autoconfig;
 
+import core.config.MyConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
     private String contextPath;
     private int port;
