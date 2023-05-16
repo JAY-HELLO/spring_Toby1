@@ -9,15 +9,6 @@ import org.springframework.core.env.Environment;
 @MySpringBootApplication
 public class SpringTobyApplication {
 
-    @Bean
-    ApplicationRunner applicationRunner(Environment env){
-        return args -> {
-            String name = env.getProperty("my.name");
-            System.out.println("My name = " + name);
-        };
-
-    }
-
     public static void main(String[] args) {
         // 처음 스프링 부트 어플리케이션을 생성할떄의 모양과 동일함을 알 수 있다.
         //MySpringApplication.run(SpringTobyApplication.class, args);
