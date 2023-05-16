@@ -18,10 +18,15 @@ public class TomcatWebServerConfig {
     @Value("${contextPath}")
     String contextPath;
 
+    @Value("${port}")
+    int port;
+
+
     @Bean("TomcatWebServerFactory")// 빈 이름 직접 지정
     @ConditionalOnMissingBean//해당타입의 빈이 사용자가 먼저 등록 한 것이 없다면 그때 동록하도록 함.
-    public ServletWebServerFactory servletWebServerFactory(Environment env) {
+    public ServletWebServerFactory servletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+        System.out.println(this.contextPath);
         factory.setContextPath(this.contextPath);
         return factory;
     }
