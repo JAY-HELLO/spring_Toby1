@@ -1,3 +1,4 @@
+core.config.autoconfig.ServerPropertiesConfig
 core.config.autoconfig.PropertyPlaceholderConfig
 core.config.autoconfig.TomcatWebServerConfig
 core.config.autoconfig.DispatcherServletConfig
