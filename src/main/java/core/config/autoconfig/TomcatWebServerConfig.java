@@ -15,10 +15,10 @@ import org.springframework.util.ClassUtils;
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
 public class TomcatWebServerConfig {
 
-    @Value("${contextPath}")
+    @Value("${contextPath:}")
     String contextPath;
 
-    @Value("${port}")
+    @Value("${port:8080}") //port가 없으면 8080으로 설정하라는 의미
     int port;
 
 
@@ -28,6 +28,7 @@ public class TomcatWebServerConfig {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
         System.out.println(this.contextPath);
         factory.setContextPath(this.contextPath);
+        factory.setPort(port);
         return factory;
     }
 
