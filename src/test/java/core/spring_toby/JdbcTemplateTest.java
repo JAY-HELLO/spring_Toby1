@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class JdbcTemplateTest {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    @Autowired JdbcTemplate jdbcTemplate;
 
     @BeforeEach
     void init(){
@@ -23,8 +22,8 @@ public class JdbcTemplateTest {
     @Test
     void insertAndQuery() {
         jdbcTemplate.update("insert into hello values(?,?)", "Toby",3);
+        jdbcTemplate.update("insert into hello values(?,?)", "spring",1);
 
-        jdbcTemplate.update("insert into hello values(?,?)", "Toby",1);
         Long count = jdbcTemplate.queryForObject("select count(*) from hello", Long.class);
         Assertions.assertThat(count).isEqualTo(2);
     }

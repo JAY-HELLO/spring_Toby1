@@ -34,6 +34,6 @@ public class HelloApiTest {
         ResponseEntity<String> res =
                 rest.getForEntity("http://localhost:9090/api/hello?name=", String.class);
 
-        assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+        assertThat(res.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }

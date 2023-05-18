@@ -1,15 +1,7 @@
 package core.spring_toby;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Objects;
 
 //@MyComponent// spring컨테이너에 들어가는 컴포넌트 선언 //component 어노테이션을 메타 어노테이션으로 가진 어노테이션
 //@Component
@@ -31,10 +23,14 @@ public class HelloController {
 
     //@ResponseBody RestController는 responseBody를 메타 어노테이션으로 가짐
     @GetMapping("/hello")
-    public String hello(String name){
+    public String hello(String name) {
 
-        if(name == null || name.trim().length() == 0 )throw new IllegalArgumentException();
+        if (name == null || name.trim().length() == 0) throw new IllegalArgumentException();
         return helloService.sayHello(name);
     }
 
+    @GetMapping("/count")
+    public String count(String name){
+        return  "name : " + helloService.countOf(name);
+    }
 }
