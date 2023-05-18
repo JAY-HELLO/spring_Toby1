@@ -5,9 +5,13 @@ import core.config.ConditionalMyOnClass;
 import core.config.EnableMyConfigurationProperties;
 import core.config.MyAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.jdbc.support.JdbcTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.sql.Driver;
@@ -15,6 +19,7 @@ import java.sql.Driver;
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.springframework.jdbc.core.JdbcOperations")//해당 클래스가 존재하면 자동구성이 실행됨.
 @EnableMyConfigurationProperties(MyDataSourceProperties.class)//자동구성 정보가 충족될떄만 빈으로 등록되도록 함
+@EnableTransactionManagement
 public class DataSourceConfig {
 
     @Bean
@@ -43,4 +48,18 @@ public class DataSourceConfig {
         return dataSource;
     }
 
+    @Bean
+    @ConditionalOnSingleCandidate(DataSource.class)
+    @ConditionalOnMissingBean
+    JdbcTemplate jdbcTemplate(DataSource dataSource){
+       return new JdbcTemplate(dataSource);
+    }
+
+
+    @Bean
+    @ConditionalOnSingleCandidate(DataSource.class)
+    @ConditionalOnMissingBean
+    JdbcTransactionManager jdbcTransactionManager(DataSource dataSource){
+        return new JdbcTransactionManager(dataSource);
+    }
 }
