@@ -6,4 +6,8 @@ import org.springframework.stereotype.Service;
 public interface HelloService {
 
     String sayHello(String name);
+
+    default int countOf(String name){
+        return 0;
+    };
 }
