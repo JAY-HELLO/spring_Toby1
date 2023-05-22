@@ -1,15 +1,14 @@
 package core.spring_toby;
 
-import core.spring_toby.study.HellobootTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
-@HellobootTest
-@Transactional
+@JdbcTest
 public class JdbcTemplateTest {
 
     @Autowired JdbcTemplate jdbcTemplate;

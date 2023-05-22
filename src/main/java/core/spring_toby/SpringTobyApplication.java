@@ -1,13 +1,12 @@
 package core.spring_toby;
 
-import core.config.MySpringBootApplication;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.PostConstruct;
 
-@MySpringBootApplication
+@SpringBootApplication
 public class SpringTobyApplication {
 
     private final JdbcTemplate jdbcTemplate;
